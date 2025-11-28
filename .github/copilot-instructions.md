@@ -11,11 +11,6 @@ replaced with concrete references.
 ## Project Vision
 This is a vegan/plant-based nutrition LLM agent demonstrating RAG, grounding, and agentic orchestration using **Python** and **open-source tools only** (no Azure/paid services).
 
-**User Context:**
-- The user is an AI Grounding Specialist building this as a personal, code-first project.
-- The project must avoid any paid/proprietary tools; open-source, zero-cost solutions only
-- The user is a beginner-to-intermediate Python developer with solid AI concepts, but no production coding experience
-
 **Core principles:**
 - Recipes retrieved from real sources, never hallucinated.
 - User preferences (ingredients, cuisines, dislikes) drive filtering & scoring.
@@ -82,3 +77,10 @@ changes.
   - "If you add a new endpoint, add an integration test under `tests/` and run `pytest`." — update paths to match actual test layout when discovered.
 
 If anything here is unclear or you want the file tailored to the project's stack (Node/Python/Go/Rust), tell me which language or point me to the main source files and I'll update this file with concrete examples and commands.
+
+# User Context:
+- The user is an AI Grounding Specialist building this as a personal, code-first project.
+- The project must avoid any paid/proprietary tools; open-source, zero-cost solutions only
+- The user is a beginner-to-intermediate Python developer with solid AI concepts, but no production coding experience
+- The user expects explanations for everything provided, as well as code options.
+- Add explanatory comments to all produced code.
