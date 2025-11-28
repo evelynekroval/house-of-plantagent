@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "house-of-plantagent"
+version = "0.1.0"
+description = "A vegan/plant-based nutrition LLM agent with RAG, grounding, and agentic orchestration."
+requires-python = ">=3.10"
+authors = [{name = "Evelyne Kroval"}]
+readme = "README.md"
+license = {text = "MIT"}
+
+dependencies = [
+    "requests>=2.31.0",      # HTTP requests for recipe scraping
+    "python-dotenv>=1.0.0",  # Load .env for secrets/config
+    "pytest>=7.4.0",         # Testing framework
+    "pytest-cov>=4.1.0",     # Code coverage for tests
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",         # Code formatting
+    "ruff>=0.1.0",           # Fast linting
+    "mypy>=1.5.0",           # Type checking
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=src --cov-report=term-only"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "W"]  # Errors, undefined names, warnings

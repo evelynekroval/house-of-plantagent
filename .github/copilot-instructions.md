@@ -8,6 +8,32 @@ replaced with concrete references.
 
 # Copilot / AI Agent Instructions — house-of-plantagent
 
+## Project Vision
+This is a vegan/plant-based nutrition LLM agent demonstrating RAG, grounding, and agentic orchestration using **Python** and **open-source tools only** (no Azure/paid services).
+
+**User Context:**
+- The user is an AI Grounding Specialist building this as a personal, code-first project.
+- The project must avoid any paid/proprietary tools; open-source, zero-cost solutions only
+- The user is a beginner-to-intermediate Python developer with solid AI concepts, but no production coding experience
+
+**Core principles:**
+- Recipes retrieved from real sources, never hallucinated.
+- User preferences (ingredients, cuisines, dislikes) drive filtering & scoring.
+- Nutritional grounding via open data + scraping pipelines.
+- Every component should be inspectable and evaluable.
+
+## When You Help
+- Prioritize retrieval pipeline robustness and grounding quality over feature breadth.
+- Suggest design patterns, not complete solutions (unless user shares code first).
+- Highlight opportunities to simplify using Azure AI Foundry concepts for educational comparison—but always suggest open-source alternatives.
+- Evaluate code for hallucination risk, modularity, and maintainability.
+
+## Tech Stack (to confirm)
+- **Language:** Python
+- **Orchestration:** [TBD—LangChain, LlamaIndex, custom agentic loop?]
+- **Retrieval:** [TBD—vector DB, keyword search, API calls?]
+- **Models:** [TBD—local, Ollama, API?]
+
 Keep changes minimal, well-scoped, and test-backed. If the repository is empty
 or missing expected manifests, ask the human before making large structural
 changes.
