@@ -1,3 +1,4 @@
+README.md
 pyproject.toml
 src/house_of_plantagent.egg-info/PKG-INFO
 src/house_of_plantagent.egg-info/SOURCES.txt
