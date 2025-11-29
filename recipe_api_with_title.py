@@ -32,8 +32,8 @@ headers = {
 }
 
 # Gonna need a user input, at least for testing
-user_input = "Lentil Soup"
-print(f"{user_input} - original")
+user_input = "Lentil Soup" # TODO Eventually must be hooked to the chat with the agent.
+print(f"{user_input} - original") 
 
 # URL-encode it (spaces → %20)
 encoded_query = quote(user_input).lower()

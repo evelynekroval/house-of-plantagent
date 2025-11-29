@@ -5,7 +5,7 @@
 - [ ] **Initialize Python project structure**
     -  [x] Create `pyproject.toml` (or `requirements.txt`) with base dependencies
     -  [x] Set up virtual environment: `python -m venv venv`
-    -  [ ] Add dev tools: `pytest`, `black`, `ruff` for linting/formatting
+    -  [x] Add dev tool: `ruff` for linting/formatting
     - *Why:* Ensures reproducible builds and follows Python conventions
 
 - [ ] **Create README.md with vision & architecture**
