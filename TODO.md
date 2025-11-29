@@ -9,7 +9,7 @@
     - *Why:* Ensures reproducible builds and follows Python conventions
 
 - [ ] **Create README.md with vision & architecture**
-    - [ ] Link to `copilot-instructions.md`
+    - [x] Link to `copilot-instructions.md`
     - [ ] Diagram: User → Agent → Retrieval → Grounding → Recipe Output
     - *Why:* Helps reviewers and future contributors understand scope
 
