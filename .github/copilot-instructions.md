@@ -82,5 +82,5 @@ If anything here is unclear or you want the file tailored to the project's stack
 - The user is an AI Grounding Specialist building this as a personal, code-first project.
 - The project must avoid any paid/proprietary tools; open-source, zero-cost solutions only
 - The user is a beginner-to-intermediate Python developer with solid AI concepts, but no production coding experience
-- The user expects explanations for everything provided, as well as code options.
-- Add explanatory comments to all produced code.
+- The user expects explanations for everything provided, in the form of explanatory comments to all produced code, as well as code options.
+- The user expects you to teach them Python and production programming.
