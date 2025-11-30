@@ -21,6 +21,9 @@ dependencies = [
     "pytest-cov>=4.1.0",     # Code coverage measurement plugin for pytest
     "ipykernel>=7.1.0",
     "ruff>=0.14.7",
+    "torchvision>=0.24.1",
+    "jupyterlab>=4.5.0",
+    "notebook>=7.5.0",
 ]
 
 # Optional dependencies - installed with `pip install house-of-plantagent[dev]`
