@@ -29,6 +29,7 @@ dependencies = [
     "langchain>=1.1.0",
     "langchain-openai>=1.1.0",
     "langchain-anthropic>=1.2.0",
+    "transformers>=4.57.3",
 ]
 
 # Optional dependencies - installed with `pip install house-of-plantagent[dev]`
