@@ -11,8 +11,8 @@ Requires-Dist: python-dotenv>=1.0.0
 Requires-Dist: pytest>=7.4.0
 Requires-Dist: pytest-cov>=4.1.0
 Requires-Dist: ipykernel>=7.1.0
+Requires-Dist: ruff>=0.14.7
 Provides-Extra: dev
-Requires-Dist: black>=23.0.0; extra == "dev"
 Requires-Dist: ruff>=0.1.0; extra == "dev"
 Requires-Dist: mypy>=1.5.0; extra == "dev"
 
