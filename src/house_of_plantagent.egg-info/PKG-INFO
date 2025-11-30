@@ -16,6 +16,7 @@ Requires-Dist: torchvision>=0.24.1
 Requires-Dist: jupyterlab>=4.5.0
 Requires-Dist: notebook>=7.5.0
 Requires-Dist: tiktoken>=0.12.0
+Requires-Dist: openai>=2.8.1
 Provides-Extra: dev
 Requires-Dist: ruff>=0.1.0; extra == "dev"
 Requires-Dist: mypy>=1.5.0; extra == "dev"
