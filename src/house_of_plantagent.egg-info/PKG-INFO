@@ -27,6 +27,9 @@ Requires-Dist: axios>=0.4.0
 Requires-Dist: duckduckgo-search>=8.1.1
 Requires-Dist: langchain-community>=0.4.1
 Requires-Dist: ddgs>=9.9.2
+Requires-Dist: langchain-ollama>=1.0.0
+Requires-Dist: ollama>=0.6.1
+Requires-Dist: langchain-tavily>=0.2.13
 Provides-Extra: dev
 Requires-Dist: ruff>=0.1.0; extra == "dev"
 Requires-Dist: mypy>=1.5.0; extra == "dev"
