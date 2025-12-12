@@ -23,6 +23,7 @@ langchain-ollama>=1.0.0
 ollama>=0.6.1
 langchain-tavily>=0.2.13
 debugpy>=1.8.18
+streamlit>=1.52.1
 
 [dev]
 ruff>=0.1.0

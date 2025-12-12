@@ -5,7 +5,7 @@ from langchain.agents.structured_output import ToolStrategy  # structured output
 from dataclasses import dataclass  # dataclass decorator for simple data containers
 import os  # access environment variables
 from dotenv import load_dotenv  # helper to load .env files into environment
-from tools import vegan_search # Import the vegan search tool I've defined.
+from tools import vegan_search, RuntimeContext # Import the vegan search tool I've defined.
 
 # Load environment variables
 load_dotenv()
@@ -16,11 +16,14 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Now LangSmith
 LANGSMITH_API_KEY = os.getenv("LANGSMITH_API_KEY")  # read Langsmith API key from environment
 
+# Now Tavily
+TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+
 # Define the model separately - allows better customisation
 model = ChatOpenAI(  # instantiate the ChatOpenAI model with desired settings
     model="gpt-5",  # model name to use
     temperature=0.1,  # low temperature for more deterministic outputs
-    timeout=30,  # request timeout in seconds
+    timeout=60,  # request timeout in seconds
 )
 
 # SYSTEM_PROMPT: multi-line system instruction for the agent. 
@@ -40,13 +43,17 @@ Rules:
 
 """
 
-# # I always wonder if I should write more for this? Or call a parent class? Idk
-# @dataclass  # simple dataclass to hold runtime context fields
+# @dataclass
 # class Context:
 #     """Custom runtime context schema."""
-#     user_id: str  # identifier for the user invoking the agent
+#     user_id: str
+
+# # I always wonder if I should write more for this? Or call a parent class? Idk
 
 # checkpointer = InMemorySaver()  # create an in-memory checkpointer for conversation state
+
+# # `thread_id` is a unique identifier for a given conversation.
+# config = {"configurable": {"thread_id": "1"}}
 
 # @dataclass  # response schema for structured agent outputs
 # class ResponseFormat:
@@ -56,18 +63,27 @@ Rules:
 #     # The URL from `vegan_search`
 #     recipe_url: str  # source URL for the recipe
 
+tools = [vegan_search]
+
 # Create the agent
 agent = create_agent(  # create the agent with model, prompt, tools and formats
     model=model,  # the LLM instance to use
     system_prompt = SYSTEM_PROMPT,  # system-level instructions for the agent
-    tools=[vegan_search],  # list of callable tools exposed to the agent
-    # context_schema=Context(user_id="1"),  # runtime context schema used when invoking the agent
-    # response_format=ToolStrategy(ResponseFormat),  # enforce structured output format
-    # checkpointer=checkpointer  # attach the checkpointer for state persistence
-    
+    tools=tools,
+    # context_schema=Context,
+    # checkpointer=checkpointer
 
 )
 
 question = "tofu and noodle recipe"
-test_results = agent.invoke({"role": "user", "content": question})
-print(test_results)
+messages = [{
+    "role": "user",
+    "content": question,
+}]
+
+for step in agent.stream(
+    {"messages": messages},
+    stream_mode="values"
+):
+    step["messages"][-1].pretty_print()
+

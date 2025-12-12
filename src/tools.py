@@ -7,6 +7,7 @@ load_dotenv()
 
 TAVILY_API_KEY=os.getenv("TAVILY_API_KEY")  # read Tavily API key from environment
 
+
 @tool
 def vegan_search(user_query:str) -> dict:
     """Main web-search tool for vegan recipes.
@@ -36,6 +37,6 @@ def vegan_search(user_query:str) -> dict:
 
     return customised_search_results
 
-# Testing the tool 1st - may need to remove "@tool"
-test_search = vegan_search("tofu and noodle recipe")
-pprint.pprint(test_search)
+# # Testing the tool 1st - may need to remove "@tool"
+# test_search = vegan_search("tofu and noodle recipe")
+# pprint.pprint(test_search)
