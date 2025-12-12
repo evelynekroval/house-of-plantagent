@@ -35,8 +35,6 @@ The project is a vegan / plant-based nutrition and cuisine LLM agent that:
    # Edit .env with your recipe source URL, model endpoint, etc.
    ```
 
-You're ready to start developing!
-
 ## Architecture Overview
 
 [To be updated as project grows—see `.github/copilot-instructions.md` for AI agent guidance.]
