@@ -26,7 +26,7 @@ The project is a vegan / plant-based nutrition and cuisine LLM agent that:
 
 3. **Install the project with dev dependencies:**
    ```bash
-  uv sync
+   uv sync
    ```
 
 4. **Copy the environment template and configure:**
