@@ -45,42 +45,55 @@ Rules:
 
 """
 
-# @dataclass
-# class Context:
-#     """Custom runtime context schema."""
-#     user_id: str
+@dataclass
+class Context:
+    """Custom runtime context schema."""
+    user_id: str
 
 # # I always wonder if I should write more for this? Or call a parent class? Idk
 
-# checkpointer = InMemorySaver()  # create an in-memory checkpointer for conversation state
+checkpointer = InMemorySaver()  # create an in-memory checkpointer for conversation state
 
 # # `thread_id` is a unique identifier for a given conversation.
-# config = {"configurable": {"thread_id": "1"}}
+config = {"configurable": {"thread_id": "1"}}
 
 # @dataclass  # response schema for structured agent outputs
 # class ResponseFormat:
-#     """Response schema for the agent."""
-#     # The response containing the title, ingredients, instructions.
-#     vegan_recipe: str  # the textual recipe and instructions
-#     # The URL from `vegan_search`
-#     recipe_url: str  # source URL for the recipe
+#     """Response schema for the agent.
+#     All are compulsory.
+#     """
+#     # Title of the recipe received in the search results
+#     recipe_title: str 
+#     # The URL of te recipe received in search results
+#     recipe_url: str
+#     # Prep time - if available from search results
+#     recipe_prep_time: str
+#     # Cooking time - if available from search results
+#     recipe_cook_time: str
+#     # The ingredients required to make the recipe.
+#     recipe_ingredients: str
+#     # Cooking instructions for the recipe
+#     recipe_instructions: str
 
 
 # Create the agent
-agent = create_agent(  # create the agent with model, prompt, tools and formats
-    model=basic_model,  # the LLM instance to use
-    system_prompt = SYSTEM_PROMPT,  # system-level instructions for the agent
+agent = create_agent(
+    model=basic_model,
+    system_prompt = SYSTEM_PROMPT,
     tools=[vegan_search],
     middleware=[dynamic_model_selection, handle_tool_errors],
-    # context_schema=Context,
-    # checkpointer=checkpointer
+    context_schema=Context,
+    checkpointer=checkpointer,
+    # response_format=ToolStrategy(ResponseFormat),
 )
 
-question = "tofu and noodle recipe"
+question = "What's an easy tofu and noodle recipe?"
 
 for step in agent.stream(
     {"messages": {"role": "user", "content": question}},
     stream_mode="values",
+    config=config,
+    context=Context(user_id="1")
 ):
     step["messages"][-1].pretty_print()
 
