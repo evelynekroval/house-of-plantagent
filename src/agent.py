@@ -5,7 +5,7 @@ from langchain.agents.structured_output import ToolStrategy  # structured output
 from dataclasses import dataclass  # dataclass decorator for simple data containers
 import os  # access environment variables
 from dotenv import load_dotenv  # helper to load .env files into environment
-from tools import vegan_search, RuntimeContext # Import the vegan search tool I've defined.
+from tools import vegan_search # Import the vegan search tool I've defined.
 
 # Load environment variables
 load_dotenv()
@@ -72,7 +72,6 @@ agent = create_agent(  # create the agent with model, prompt, tools and formats
     tools=tools,
     # context_schema=Context,
     # checkpointer=checkpointer
-
 )
 
 question = "tofu and noodle recipe"

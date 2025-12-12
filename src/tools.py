@@ -24,7 +24,7 @@ def vegan_search(user_query:str) -> dict:
     """
 
     tavily_search_tool = TavilySearch(  # create a TavilySearch instance with basic settings
-            max_results=1,  # only keep the top result
+            max_results=2,  # only keep the top result
             topic="general",  # general topic search
             search_depth = "advanced",  # depth parameter for the search
         )
