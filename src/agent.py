@@ -6,6 +6,8 @@ from dataclasses import dataclass  # dataclass decorator for simple data contain
 import os  # access environment variables
 from dotenv import load_dotenv  # helper to load .env files into environment
 from tools import vegan_search # Import the vegan search tool I've defined.
+from middleware import dynamic_model_selection, handle_tool_errors, basic_model, advanced_model, COMMON_MODEL_KWARGS
+
 
 # Load environment variables
 load_dotenv()
@@ -20,11 +22,11 @@ LANGSMITH_API_KEY = os.getenv("LANGSMITH_API_KEY")  # read Langsmith API key fro
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 # Define the model separately - allows better customisation
-model = ChatOpenAI(  # instantiate the ChatOpenAI model with desired settings
-    model="gpt-5",  # model name to use
-    temperature=0.1,  # low temperature for more deterministic outputs
-    timeout=60,  # request timeout in seconds
-)
+# model = ChatOpenAI(  # instantiate the ChatOpenAI model with desired settings
+#     model="gpt-5",  # model name to use
+#     temperature=0.1,  # low temperature for more deterministic outputs
+#     timeout=60,  # request timeout in seconds
+# )
 
 # SYSTEM_PROMPT: multi-line system instruction for the agent. 
 # Could this be part of what's causing the error?
@@ -63,26 +65,22 @@ Rules:
 #     # The URL from `vegan_search`
 #     recipe_url: str  # source URL for the recipe
 
-tools = [vegan_search]
 
 # Create the agent
 agent = create_agent(  # create the agent with model, prompt, tools and formats
-    model=model,  # the LLM instance to use
+    model=basic_model,  # the LLM instance to use
     system_prompt = SYSTEM_PROMPT,  # system-level instructions for the agent
-    tools=tools,
+    tools=[vegan_search],
+    middleware=[dynamic_model_selection, handle_tool_errors],
     # context_schema=Context,
     # checkpointer=checkpointer
 )
 
 question = "tofu and noodle recipe"
-messages = [{
-    "role": "user",
-    "content": question,
-}]
 
 for step in agent.stream(
-    {"messages": messages},
-    stream_mode="values"
+    {"messages": {"role": "user", "content": question}},
+    stream_mode="values",
 ):
     step["messages"][-1].pretty_print()
 
