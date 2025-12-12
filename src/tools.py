@@ -2,6 +2,7 @@ from langchain_tavily import TavilySearch  # Tavily search tool (external integr
 import os  # access environment variables
 from dotenv import load_dotenv  # helper to load .env files into environment
 from langchain.tools import tool, ToolRuntime  # tool decorator and runtime typing
+import pprint
 load_dotenv()
 
 TAVILY_API_KEY=os.getenv("TAVILY_API_KEY")  # read Tavily API key from environment
@@ -34,3 +35,7 @@ def vegan_search(user_query:str) -> dict:
     }
 
     return customised_search_results
+
+# Testing the tool 1st - may need to remove "@tool"
+test_search = vegan_search("tofu and noodle recipe")
+pprint.pprint(test_search)

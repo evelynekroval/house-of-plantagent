@@ -40,30 +40,34 @@ Rules:
 
 """
 
-# I always wonder if I should write more for this? Or call a parent class? Idk
-@dataclass  # simple dataclass to hold runtime context fields
-class Context:
-    """Custom runtime context schema."""
-    user_id: str  # identifier for the user invoking the agent
+# # I always wonder if I should write more for this? Or call a parent class? Idk
+# @dataclass  # simple dataclass to hold runtime context fields
+# class Context:
+#     """Custom runtime context schema."""
+#     user_id: str  # identifier for the user invoking the agent
 
-checkpointer = InMemorySaver()  # create an in-memory checkpointer for conversation state
+# checkpointer = InMemorySaver()  # create an in-memory checkpointer for conversation state
 
-@dataclass  # response schema for structured agent outputs
-class ResponseFormat:
-    """Response schema for the agent."""
-    # The response containing the title, ingredients, instructions.
-    vegan_recipe: str  # the textual recipe and instructions
-    # The URL from `tavily_search_wrapper`
-    recipe_url: str  # source URL for the recipe
+# @dataclass  # response schema for structured agent outputs
+# class ResponseFormat:
+#     """Response schema for the agent."""
+#     # The response containing the title, ingredients, instructions.
+#     vegan_recipe: str  # the textual recipe and instructions
+#     # The URL from `vegan_search`
+#     recipe_url: str  # source URL for the recipe
 
 # Create the agent
 agent = create_agent(  # create the agent with model, prompt, tools and formats
     model=model,  # the LLM instance to use
     system_prompt = SYSTEM_PROMPT,  # system-level instructions for the agent
     tools=[vegan_search],  # list of callable tools exposed to the agent
-    context_schema=Context,  # runtime context schema used when invoking the agent
-    response_format=ToolStrategy(ResponseFormat),  # enforce structured output format
-    checkpointer=checkpointer  # attach the checkpointer for state persistence
+    # context_schema=Context(user_id="1"),  # runtime context schema used when invoking the agent
+    # response_format=ToolStrategy(ResponseFormat),  # enforce structured output format
+    # checkpointer=checkpointer  # attach the checkpointer for state persistence
     
 
 )
+
+question = "tofu and noodle recipe"
+test_results = agent.invoke({"role": "user", "content": question})
+print(test_results)
