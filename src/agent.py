@@ -1,4 +1,4 @@
-from langchain.agents import create_agent  # import function to create agents
+from langchain.agents import create_agent, AgentState  # import function to create agents
 from langchain_openai import ChatOpenAI  # ChatOpenAI model wrapper
 from langgraph.checkpoint.memory import InMemorySaver  # in-memory checkpointer for states
 from langchain.agents.structured_output import ToolStrategy, ProviderStrategy  # structured output strategy for agent responses
@@ -77,7 +77,8 @@ config = {"configurable": {"thread_id": "1"}}
 #     # 2: Cooking instructions for the recipe
 #     rest_of_response: str
 
-    
+class CustomState(AgentState):
+    user_preferences: dict
     
 
 
@@ -89,16 +90,23 @@ agent = create_agent(
     middleware=[dynamic_model_selection, handle_tool_errors],
     context_schema=Context,
     checkpointer=checkpointer,
+    state_schema=CustomState
     # response_format=ProviderStrategy(ResponseFormat),
 )
 
 question = "What's an easy tofu and noodle recipe?"
 
-for step in agent.stream(
-    {"messages": {"role": "user", "content": question}},
-    stream_mode="values",
+for chunk in agent.stream({
+    "messages": [{"role": "user", "content": question}],
+    "user_preferences": [{"style": "culinary", "verbosity": "minimal"}]
+}, stream_mode="values",
     config=config,
-    context=Context(user_id="1")
-):
-    step["messages"][-1].pretty_print()
+    context=Context(user_id="1")):
+    # Each chunk contains the full state at that point
+    latest_message = chunk["messages"][-1]
+    if latest_message.content:
+        print(f"Agent: {latest_message.content}")
+    elif latest_message.tool_calls:
+        print(f"Calling tools: {[tc['name'] for tc in latest_message.tool_calls]}")
+
 

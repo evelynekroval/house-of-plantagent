@@ -4,6 +4,7 @@
 - [x] Reading about ResponseFormat, I realise it's 'structured' in the sense of a JSON or dictionary. It's not necessarily appropriate for what I need, and likely I can control this from system prompt. I've tried out an example and it works great.
 - [x] Is it really necessary to restrict websites? Search tools can technically see past the usual limitations... 
 - [x] On the bright side, adding it to the system prompt to only call the tool once per query seems to have solved it!
+- I'm thinking about all the things I could be doing: implementing memory, mostly, or adding a UI. And all that matters to me is adding a UI.
 ### 12
 - [x] Tool runs. Agent runs. That's great.
 - [x] Issue is that they clearly don't pass information to each other. I _suspect_ the issue relates to context / runtime context, which I feel I've read about several times and I just don't grasp what the issue is.

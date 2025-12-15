@@ -1,12 +1,17 @@
 from langchain_openai import ChatOpenAI
-from langchain.agents import create_agent
-from langchain.agents.middleware import wrap_model_call, ModelRequest, ModelResponse, wrap_tool_call
+from langchain.agents import AgentState
+from langchain.agents.middleware import (
+    wrap_model_call, 
+    ModelRequest, 
+    ModelResponse, 
+    wrap_tool_call)
 from langchain.messages import ToolMessage
+from typing import Any
 
 
-################################
-# Tool 1: Dynamic Model Change #
-################################
+###########################
+# 1: Dynamic Model Change #
+###########################
 
 
 COMMON_MODEL_KWARGS = {"temperature": 0.1, "timeout": 60}
@@ -34,9 +39,9 @@ def dynamic_model_selection(request: ModelRequest, handler) -> ModelResponse:
     return handler(request.override(model=model))
 
 
-################################
-# Tool 2: Handling Tool Errors #
-################################
+############################
+# 2: Handling Tool Errors #
+############################
 
 @wrap_tool_call
 def handle_tool_errors(user_query, handler):
@@ -57,3 +62,8 @@ def handle_tool_errors(user_query, handler):
             and try again: ({str(e)})""",
             tool_call_id=user_query.tool_call["id"]
         )
+
+
+###########################
+# 3: Custom Middleware? #
+###########################
