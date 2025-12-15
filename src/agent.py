@@ -1,8 +1,9 @@
 from langchain.agents import create_agent  # import function to create agents
 from langchain_openai import ChatOpenAI  # ChatOpenAI model wrapper
 from langgraph.checkpoint.memory import InMemorySaver  # in-memory checkpointer for states
-from langchain.agents.structured_output import ToolStrategy  # structured output strategy for agent responses
+from langchain.agents.structured_output import ToolStrategy, ProviderStrategy  # structured output strategy for agent responses
 from dataclasses import dataclass  # dataclass decorator for simple data containers
+from pydantic import BaseModel
 import os  # access environment variables
 from dotenv import load_dotenv  # helper to load .env files into environment
 from tools import vegan_search # Import the vegan search tool I've defined.
@@ -21,28 +22,29 @@ LANGSMITH_API_KEY = os.getenv("LANGSMITH_API_KEY")  # read Langsmith API key fro
 # Now Tavily
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
-# Define the model separately - allows better customisation
-# model = ChatOpenAI(  # instantiate the ChatOpenAI model with desired settings
-#     model="gpt-5",  # model name to use
-#     temperature=0.1,  # low temperature for more deterministic outputs
-#     timeout=60,  # request timeout in seconds
-# )
-
 # SYSTEM_PROMPT: multi-line system instruction for the agent. 
-# Could this be part of what's causing the error?
 SYSTEM_PROMPT = """You are an expert vegan/plant-based nutritionist and meal generator.
 Your name is House of PlantAgent.
 
-You have access to one tool, which you MUST use before generating each new recipe-generated response:
+You have access to one main tool, which you MUST use before generating each new recipe-generated response. 
+Call it only ONCE per query:
 
 - tavily_search_tool: use this to search for a vegan recipe based on the user's stated preferences.
+
+Your other tools are:
+- handle_tool_errors: use this where the search term is not appropriate to your role and you need the user to reconsider their query.
 
 Rules:
 - Think step-by-step.
 - Based on your tool results, provide the ingredients, quantities, and cooking instructions in return to the user query.
 - If the user asks non-recipe related questions, state that your purpose is only to generate user recipes.
 
+From `vegan_search`'s output, {customised_search_results}, output in this format:
+'I found {title} at {url}. Here is the full recipe:
 
+{content}
+
+'
 """
 
 @dataclass
@@ -57,8 +59,8 @@ checkpointer = InMemorySaver()  # create an in-memory checkpointer for conversat
 # # `thread_id` is a unique identifier for a given conversation.
 config = {"configurable": {"thread_id": "1"}}
 
-# @dataclass  # response schema for structured agent outputs
-# class ResponseFormat:
+# # Creating response format.
+# class ResponseFormat(BaseModel):
 #     """Response schema for the agent.
 #     All are compulsory.
 #     """
@@ -70,10 +72,13 @@ config = {"configurable": {"thread_id": "1"}}
 #     recipe_prep_time: str
 #     # Cooking time - if available from search results
 #     recipe_cook_time: str
-#     # The ingredients required to make the recipe.
-#     recipe_ingredients: str
-#     # Cooking instructions for the recipe
-#     recipe_instructions: str
+#     # Rest of response - this forms the longest part of the generation and contains:
+#     # 1: The ingredients required to make the recipe.
+#     # 2: Cooking instructions for the recipe
+#     rest_of_response: str
+
+    
+    
 
 
 # Create the agent
@@ -84,7 +89,7 @@ agent = create_agent(
     middleware=[dynamic_model_selection, handle_tool_errors],
     context_schema=Context,
     checkpointer=checkpointer,
-    # response_format=ToolStrategy(ResponseFormat),
+    # response_format=ProviderStrategy(ResponseFormat),
 )
 
 question = "What's an easy tofu and noodle recipe?"

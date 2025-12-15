@@ -5,6 +5,9 @@ from langchain.tools import tool, ToolRuntime  # tool decorator and runtime typi
 import pprint
 load_dotenv()
 
+
+
+
 TAVILY_API_KEY=os.getenv("TAVILY_API_KEY")  # read Tavily API key from environment
 
 
@@ -24,7 +27,7 @@ def vegan_search(user_query:str) -> dict:
     """
 
     tavily_search_tool = TavilySearch(  # create a TavilySearch instance with basic settings
-            max_results=2,  # only keep the top result
+            max_results=1,  # only keep the top result
             topic="general",  # general topic search
             search_depth = "advanced",  # depth parameter for the search
         )
