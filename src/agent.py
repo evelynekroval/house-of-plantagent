@@ -89,7 +89,7 @@ agent = create_agent(
     tools=[vegan_search],
     middleware=[dynamic_model_selection, handle_tool_errors],
     context_schema=Context,
-    checkpointer=checkpointer,
+    # checkpointer=checkpointer,
     state_schema=CustomState
     # response_format=ProviderStrategy(ResponseFormat),
 )
@@ -98,7 +98,7 @@ question = "What's an easy tofu and noodle recipe?"
 
 for chunk in agent.stream({
     "messages": [{"role": "user", "content": question}],
-    "user_preferences": [{"style": "culinary", "verbosity": "minimal"}]
+    # "user_preferences": [{"style": "culinary", "verbosity": "minimal"}]
 }, stream_mode="values",
     config=config,
     context=Context(user_id="1")):

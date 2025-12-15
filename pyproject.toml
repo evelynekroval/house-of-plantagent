@@ -41,6 +41,7 @@ dependencies = [
     "langchain-tavily>=0.2.13",
     "debugpy>=1.8.18",
     "streamlit>=1.52.1",
+    "langgraph-cli[inmem]>=0.4.9",
 ]
 
 # Optional dependencies - installed with `pip install house-of-plantagent[dev]`
