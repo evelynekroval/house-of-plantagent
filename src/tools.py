@@ -41,7 +41,3 @@ def vegan_search(user_query:str) -> dict:
     }
 
     return customised_search_results
-
-# # Testing the tool 1st - may need to remove "@tool"
-# test_search = vegan_search("tofu and noodle recipe")
-# pprint.pprint(test_search)

@@ -8,7 +8,10 @@ import os  # access environment variables
 from dotenv import load_dotenv  # helper to load .env files into environment
 from tools import vegan_search # Import the vegan search tool I've defined.
 from middleware import dynamic_model_selection, handle_tool_errors, basic_model, advanced_model, COMMON_MODEL_KWARGS
-
+from typing import (
+    Any,
+    Optional
+    )
 
 # Load environment variables
 load_dotenv()
@@ -50,7 +53,7 @@ From `vegan_search`'s output, {customised_search_results}, output in this format
 @dataclass
 class Context:
     """Custom runtime context schema."""
-    user_id: str
+    user_id: Optional[str]
 
 # # I always wonder if I should write more for this? Or call a parent class? Idk
 
@@ -99,9 +102,10 @@ question = "What's an easy tofu and noodle recipe?"
 for chunk in agent.stream({
     "messages": [{"role": "user", "content": question}],
     # "user_preferences": [{"style": "culinary", "verbosity": "minimal"}]
-}, stream_mode="values",
+}, context=Context(user_id="1"),
+    stream_mode="values",
     config=config,
-    context=Context(user_id="1")):
+    ):
     # Each chunk contains the full state at that point
     latest_message = chunk["messages"][-1]
     if latest_message.content:
