@@ -37,7 +37,7 @@ The project is a vegan / plant-based nutrition and cuisine LLM agent that:
 
 ## Architecture Overview
 
-[To be updated as project grows—see `.github/copilot-instructions.md` for AI agent guidance.]
+https://drive.google.com/file/d/1mVlCivBxm1Sefn0bzI8IMZ5maSdmqDSU/view?usp=sharing
 
 ## Project Structure
 

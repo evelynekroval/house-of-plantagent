@@ -14,7 +14,7 @@ from typing import Any
 ###########################
 
 
-COMMON_MODEL_KWARGS = {"temperature": 0.1, "timeout": 60}
+COMMON_MODEL_KWARGS = {"temperature": 0.3, "timeout": 60}
 
 basic_model = ChatOpenAI(
     model="gpt-4o-mini", 
