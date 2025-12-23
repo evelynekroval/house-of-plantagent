@@ -97,7 +97,7 @@ class CustomState(AgentState):
 agent = create_agent(
     model=basic_model,
     system_prompt = SYSTEM_PROMPT,
-    tools=[vegan_search],
+    tools=[scrying_the_skies],
     middleware=[dynamic_model_selection, handle_tool_errors],
     context_schema=Context,
     # checkpointer=checkpointer,
