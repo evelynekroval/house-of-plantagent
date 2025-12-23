@@ -18,6 +18,8 @@ from typing import (
     Optional
     )
 
+
+
 # Load environment variables
 load_dotenv()
 
@@ -58,10 +60,9 @@ From `scrying_the_skies`'s output, {customised_search_results}, output in this f
 Chat history: {chat_history}
 """
 
-@dataclass
-class Context:
-    """Custom runtime context schema."""
-    user_id: Optional[str]
+class Context(BaseModel):
+    """Pydantic context schema — safe for libraries that may call Context() internally."""
+    user_id: Optional[str] = None
 
 # # I always wonder if I should write more for this? Or call a parent class? Idk
 
@@ -89,7 +90,7 @@ config = {"configurable": {"thread_id": "1"}}
 #     rest_of_response: str
 
 class CustomState(AgentState):
-    user_preferences: dict
+    pass
     
 
 
