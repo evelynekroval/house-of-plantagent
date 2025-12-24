@@ -6,8 +6,8 @@ build-backend = "setuptools.build_meta"   # Use setuptools as the build backend
 # Core project metadata
 [project]
 name = "house-of-plantagent"              # Package name (used in pip install)
-version = "0.1.0"                         # Semantic versioning: major.minor.patch
-description = "A vegan/plant-based nutrition LLM agent with RAG, grounding, and agentic orchestration."  # One-liner summary
+version = "1.0.0"                         # Semantic versioning: major.minor.patch
+description = "A vegan/plant-based nutrition LLM agent with web-search retrieval"  # One-liner summary
 requires-python = ">=3.10"                # Minimum Python version required
 authors = [{name = "Evelyne Kroval"}]     # Project author(s)
 readme = "README.md"                      # Path to README displayed on PyPI
@@ -55,7 +55,6 @@ dev = [
 # Where setuptools looks for package code
 [tool.setuptools.packages.find]
 where = ["."]
-                           # All Python packages are in src/ directory
 
 # pytest configuration
 [tool.pytest.ini_options]
