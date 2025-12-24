@@ -13,7 +13,7 @@ A vegan/plant-based nutrition and cuisine agent powered by OpenAI 4o mini search
 ## Quick Start - Chat
 
 ### Streamlit Deployment
-You can check the live version here: 
+You can check the live version here: https://house-of-plantagent-ywx9rzj4j2lmnqxqba3mgv.streamlit.app/. 
 
 ## Quick Start - Code
 
