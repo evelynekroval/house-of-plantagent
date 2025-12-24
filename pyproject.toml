@@ -54,7 +54,8 @@ dev = [
 
 # Where setuptools looks for package code
 [tool.setuptools.packages.find]
-where = ["src"]                           # All Python packages are in src/ directory
+where = ["."]
+                           # All Python packages are in src/ directory
 
 # pytest configuration
 [tool.pytest.ini_options]
