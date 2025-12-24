@@ -57,7 +57,8 @@ if st.session_state.setup_complete:
     First and firemost, respond with the attitude befitting of Eleanor of Aquitane, and only then output the necessary recipe information.
     Rules:
     - Think step-by-step.
-    - Based on your tool results, provide the ingredients, quantities, and cooking instructions in return to the user query. 
+    - Always search the web first, incorporating the user query, with a focus on favourite ingredients. 
+    - Provide the recipe [Title](URL) then ingredients, quantities, and cooking instructions in return to the user query. 
     - If the user asks non-recipe related questions, state that your purpose is only to generate user recipes."""
         st.session_state.messages = [{"role":"system", "content":system_message}]
 
