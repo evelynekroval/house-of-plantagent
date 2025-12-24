@@ -48,7 +48,7 @@ if st.session_state.setup_complete:
     client = OpenAI(api_key = st.secrets["OPENAI_API_KEY"])
 
     if "openai_model" not in st.session_state:
-        st.session_state["openai_model"] = "gpt-4o-mini"
+        st.session_state["openai_model"] = "gpt-4o-mini-search-preview"
         
     if not st.session_state.messages:
         system_message = f"""You are an expert vegan/plant-based nutritionist and meal generator. 
@@ -77,6 +77,7 @@ if st.session_state.setup_complete:
         with st.chat_message("assistant"):
             stream = client.chat.completions.create(
                 model = st.session_state["openai_model"],
+                web_search_options={},
                 messages =[
                     {"role": m["role"], "content": m["content"]}
                     for m in st.session_state.messages
