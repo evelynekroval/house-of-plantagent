@@ -1452,6 +1452,7 @@ dependencies = [
     { name = "requests" },
     { name = "ruff" },
     { name = "streamlit" },
+    { name = "streamlit-js-eval" },
     { name = "tiktoken" },
     { name = "torchvision" },
     { name = "transformers" },
@@ -1491,6 +1492,7 @@ requires-dist = [
     { name = "ruff", specifier = ">=0.14.7" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
     { name = "streamlit", specifier = ">=1.52.1" },
+    { name = "streamlit-js-eval", specifier = ">=0.1.7" },
     { name = "tiktoken", specifier = ">=0.12.0" },
     { name = "torchvision", specifier = ">=0.24.1" },
     { name = "transformers", specifier = ">=4.57.3" },
@@ -5092,6 +5094,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/6f/ec/66ca1578587bbaaea5757a7f074d3f762fff8d782ffb4497a83c5722aa44/streamlit-1.52.1.tar.gz", hash = "sha256:b036a71866b893c97fdebaa2a2ebd21ebf2af7daea4b3abe783a57b26f55b3ca", size = 8582829, upload-time = "2025-12-05T18:55:42.006Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d0/d4/cdafd4cc940937410f465ca7a77dd34237182c2ddece624e08db959496f8/streamlit-1.52.1-py3-none-any.whl", hash = "sha256:97fee2c3421d350fd65548e45a20f506ec1b651d78f95ecacbc0c2f9f838081c", size = 9024748, upload-time = "2025-12-05T18:55:39.713Z" },
+]
+
+[[package]]
+name = "streamlit-js-eval"
+version = "0.1.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "streamlit" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/76/e4/bde7a73ed1967e0713e4e361c9b1a3ee87e66399c39422be13498467dd72/streamlit_js_eval-0.1.7.tar.gz", hash = "sha256:af80eff45e2f23a676588578aff7d2790080360528c656f4a4476c1484574c97", size = 7049, upload-time = "2024-03-06T11:37:16.135Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/98/15/e8abb57a25eb11ee5e645ef123ee7c38f5fecbbea5268e92674f1b65ba61/streamlit_js_eval-0.1.7-py3-none-any.whl", hash = "sha256:c99c23d1c6e2a27fd45794262e2ac07befaef9603a86e4e325a9e980cad8c78d", size = 7912, upload-time = "2024-03-06T11:37:15.248Z" },
 ]
 
 [[package]]

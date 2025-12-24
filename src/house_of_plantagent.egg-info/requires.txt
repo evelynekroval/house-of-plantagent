@@ -25,6 +25,7 @@ langchain-tavily>=0.2.13
 debugpy>=1.8.18
 streamlit>=1.52.1
 langgraph-cli[inmem]>=0.4.9
+streamlit-js-eval>=0.1.7
 
 [dev]
 ruff>=0.1.0

@@ -42,6 +42,7 @@ dependencies = [
     "debugpy>=1.8.18",
     "streamlit>=1.52.1",
     "langgraph-cli[inmem]>=0.4.9",
+    "streamlit-js-eval>=0.1.7",
 ]
 
 # Optional dependencies - installed with `pip install house-of-plantagent[dev]`
