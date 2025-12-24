@@ -33,6 +33,7 @@ Requires-Dist: langchain-tavily>=0.2.13
 Requires-Dist: debugpy>=1.8.18
 Requires-Dist: streamlit>=1.52.1
 Requires-Dist: langgraph-cli[inmem]>=0.4.9
+Requires-Dist: streamlit-js-eval>=0.1.7
 Provides-Extra: dev
 Requires-Dist: ruff>=0.1.0; extra == "dev"
 Requires-Dist: mypy>=1.5.0; extra == "dev"
