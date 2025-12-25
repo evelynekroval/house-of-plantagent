@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: house-of-plantagent
+Version: 1.0.0
+Summary: A vegan/plant-based nutrition LLM agent with web-search retrieval
+Author: Evelyne Kroval
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: openai>=2.11.0
+Requires-Dist: streamlit>=1.52.1
+Provides-Extra: dev
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.5.0; extra == "dev"
+
+# House of PlantAgent
+
+A vegan/plant-based nutrition and cuisine agent powered by OpenAI 4o mini search preview, which includes real recipe retrieval.  
+**(Less) hallucinated recipes—only. Real, web-sourced dishes.**
+
+## Features
+
+- Search for vegan recipes guided by Eleanor of Aquitaine (LLM persona).
+- Retrieves recipes from the web, not model memory.
+- User preferences (ingredients, cuisines, dislikes) drive results.
+- Streamlit chat interface for easy interaction.
+
+## Quick Start - Chat
+
+### Streamlit Deployment
+You can check the live version here: https://house-of-plantagent-ywx9rzj4j2lmnqxqba3mgv.streamlit.app/. 
+
+## Quick Start - Code
+
+### Prerequisites
+
+- Python 3.10 or higher (recommended: 3.13)
+- [`uv`](https://github.com/astral-sh/uv) for Python environment management
+- [Streamlit](https://streamlit.io/) (installed via `uv sync`)
+- OpenAI API key (stored in Streamlit secrets)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/evelynekroval/house-of-plantagent.git
+   cd house-of-plantagent
+   ```
+
+2. **Create and activate a virtual environment:**
+   ```bash
+   uv venv .venv
+   source .venv/bin/activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   uv sync
+   ```
+
+4. **Configure secrets:**
+   - Add your OpenAI API key to `.streamlit/secrets.toml`:
+     ```
+     [OPENAI_API_KEY]
+     OPENAI_API_KEY = "your-openai-key-here"
+     ```
+
+### Running the App Locally
+
+```bash
+streamlit run app.py
+```
+
+- The app will launch in your browser.
+- Chat with Eleanor of Aquitaine to find vegan recipes.
+
+## Deployment
+
+You can deploy to [Streamlit Cloud](https://streamlit.io/cloud) or any platform supporting Streamlit apps.  
+Just ensure your `secrets.toml` is configured with your OpenAI API key.
+
+## Project Structure
+
+- `app.py` — Main Streamlit app
+- `.streamlit/secrets.toml` — API keys and secrets
+- `archived_src` - Previous work using LangChain and such.
+
+---
+
+**Questions?**  
+Open an issue or ask in the chat!

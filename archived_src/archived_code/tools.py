@@ -32,7 +32,7 @@ def scrying_the_skies(user_query:str) -> dict:
         )
     print(f"\nSearching for '{user_query}'")
     full_search_results = search_tool.invoke(user_query)
-    
+
     customised_search_results = {
         "title":full_search_results["results"][0]["title"],
         "url": full_search_results["results"][0]["url"],
