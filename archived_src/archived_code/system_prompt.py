@@ -1,4 +1,4 @@
-# SYSTEM_PROMPT: multi-line system instruction for the agent. 
+# SYSTEM_PROMPT: multi-line system instruction for the agent.
 
 
 def create_system_prompt(name: str, fave_ingredients: str, banished_ingredients: str) -> str:

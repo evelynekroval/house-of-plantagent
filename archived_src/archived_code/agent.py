@@ -22,7 +22,7 @@ TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 class Context(BaseModel):
     """Pydantic context schema — safe for libraries that may call Context() internally."""
     user_id: Optional[str] = None
-    
+
 # Memory checkpointer.
 
 checkpointer = InMemorySaver()  # create an in-memory checkpointer for conversation state
@@ -32,9 +32,9 @@ config = {"configurable": {"thread_id": "1"}}
 
 class CustomState(AgentState):
     pass
-    
+
 model = ChatOpenAI(
-    model="gpt-4o-mini", 
+    model="gpt-4o-mini",
     temperature = 0.3,
     timeout = 60
     )
